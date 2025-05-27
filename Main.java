@@ -23,6 +23,8 @@ public class Main {
                 register();
             } else if (cmd.equals("목록")) {
                 getList();
+            } else if (cmd.startsWith("삭제?id=")) {
+                delete(cmd);
             }
         }
     }
@@ -58,5 +60,14 @@ public class Main {
     public static void checkBlank() {
         System.out.println("공란으로 둘 수 없습니다.");
         register();
+    }
+
+    public static void delete(String cmd) {
+        try {
+            int id = Integer.parseInt(cmd.substring(6));
+            list.remove(id -1);
+        } catch (Exception e) {
+            System.out.println("잘못된 id입니다.");
+        }
     }
 }
