@@ -30,8 +30,16 @@ public class Main {
     public static void register() {
         System.out.print("명언: ");
         String wiseSaying = sc.nextLine().trim();
+        if (wiseSaying.isEmpty()) {
+            checkBlank();
+            return;
+        }
         System.out.print("작가: ");
         String author = sc.nextLine().trim();
+        if (author.isEmpty()) {
+            checkBlank();
+            return;
+        }
         count++;
         String[] arr = {String.valueOf(count), author, wiseSaying};
         list.add(arr);
@@ -45,6 +53,10 @@ public class Main {
             String[] el = list.get(i);
             System.out.printf("%s / %s / %s\n", el[0], el[1], el[2]);
         }
+    }
 
+    public static void checkBlank() {
+        System.out.println("공란으로 둘 수 없습니다.");
+        register();
     }
 }
