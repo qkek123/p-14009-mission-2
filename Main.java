@@ -1,10 +1,13 @@
 package org.example.p_14009_mission_2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static int count = 0;
+    static List<String[]> list = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println("== 명언 앱==");
@@ -18,6 +21,8 @@ public class Main {
                 break;
             } else if (cmd.equals("등록")) {
                 register();
+            } else if (cmd.equals("목록")) {
+                getList();
             }
         }
     }
@@ -28,6 +33,18 @@ public class Main {
         System.out.print("작가: ");
         String author = sc.nextLine().trim();
         count++;
+        String[] arr = {String.valueOf(count), author, wiseSaying};
+        list.add(arr);
         System.out.printf("%d번 명언이 등록되었습니다.\n", count);
+    }
+
+    public static void getList() {
+        System.out.println("번호 / 작가 / 명언");
+
+        for (int i = list.size() - 1; i >= 0; i--) {
+            String[] el = list.get(i);
+            System.out.printf("%s / %s / %s\n", el[0], el[1], el[2]);
+        }
+
     }
 }
