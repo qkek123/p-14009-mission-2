@@ -3,9 +3,9 @@ package org.example.p_14009_mission_2;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
 
+    public static void main(String[] args) {
         System.out.println("== 명언 앱==");
 
         while (true) {
@@ -15,7 +15,16 @@ public class Main {
             if (cmd.equals("종료")) {
                 sc.close();
                 break;
+            } else if (cmd.equals("등록")) {
+                register();
             }
         }
+    }
+
+    public static void register() {
+        System.out.print("명언: ");
+        String wiseSaying = sc.nextLine().trim();
+        System.out.print("작가: ");
+        String author = sc.nextLine().trim();
     }
 }
