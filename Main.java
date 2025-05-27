@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+    static int count = 0;
 
     public static void main(String[] args) {
         System.out.println("== 명언 앱==");
@@ -26,5 +27,7 @@ public class Main {
         String wiseSaying = sc.nextLine().trim();
         System.out.print("작가: ");
         String author = sc.nextLine().trim();
+        count++;
+        System.out.printf("%d번 명언이 등록되었습니다.\n", count);
     }
 }
