@@ -1,7 +1,6 @@
 package org.example.p_14009_mission_2;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -117,6 +116,40 @@ public class FunctionBoard {
             System.out.println("파일 저장 실패");
         }
 
+    }
+
+    public static void build() {
+        List <String> arr = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            arr.add("db/wiseSaying/"+list.get(i).count+".json");
+            //arr에 파일 이름들 모임
+        }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("data.json"))) {
+            bw.write("[\n");
+
+            for (int i = 0; i < arr.size(); i++) {
+                String el = arr.get(i);
+                try (BufferedReader reader = new BufferedReader(new FileReader(el))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        bw.write(line);
+                        bw.newLine();
+                    }
+                } catch (Exception e) {
+                    System.out.println("파일 읽기 실패: " + el);
+                }
+
+                if (i < arr.size() - 1) {
+                    bw.write(",");
+                    bw.newLine();
+                }
+            }
+
+            bw.write("]");
+            System.out.println("data.json 파일의 내용이 갱신되었습니다.");
+        } catch(Exception e) {
+            System.out.println("파일 저장 실패");
+        }
     }
 
 }

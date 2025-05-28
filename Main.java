@@ -28,6 +28,7 @@ public class Main {
                 case "목록" -> FunctionBoard.getList();
                 case "삭제" -> FunctionBoard.delete(id);
                 case "수정" -> FunctionBoard.modify(id);
+                case "빌드" -> FunctionBoard.build();
             }
         }
     }
