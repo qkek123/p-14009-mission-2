@@ -67,6 +67,8 @@ public class FunctionBoard {
                     System.out.print("작가 : ");
                     String author = sc.nextLine();
                     System.out.printf("%d번 명언이 수정되었습니다.\n", id);
+                    WiseSaying WiseSayings = new WiseSaying(count, wiseSaying, author);
+                    toJson(WiseSayings);
                     found = true;
 
                     WiseSaying newWiseSaying = new WiseSaying(list.get(i).count, author, wiseSaying);
