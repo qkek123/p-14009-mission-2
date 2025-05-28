@@ -1,5 +1,7 @@
 package org.example.p_14009_mission_2;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,6 +49,7 @@ public class Main {
         count++;
         String[] arr = {String.valueOf(count), author, wiseSaying};
         list.add(arr);
+        toJson(arr);
         System.out.printf("%d번 명언이 등록되었습니다.\n", count);
     }
 
@@ -113,5 +116,39 @@ public class Main {
         } catch (Exception e) {
             System.out.println("id는 숫자로 작성해주세요.");
         }
+    }
+
+    public static void toJson(String[] arr) {
+        String dirPath = "da/wiseSaying/";
+        File dir = new File(dirPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        String fileName = dirPath + arr[0]+".json";
+        String content = "{" +
+                "    \"id\": " + arr[0] + "," +
+                "    \"content\": \"" + arr[2] + "\"," +
+                "    \"author\": \"" + arr[1] + "\"" +
+                "}";
+        String idFileName = dirPath+ "lastId.txt";
+        String lastId = arr[0];
+
+        try {
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(content);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("파일 저장 실패");
+        }
+
+        try {
+            FileWriter writer = new FileWriter(idFileName);
+            writer.write(lastId);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("파일 저장 실패");
+        }
+
     }
 }
